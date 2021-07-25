@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0097801d-8d86-43a0-9957-362b430bf43a" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<os:object-store name="Object_store" doc:name="Object store" doc:id="8efb030e-0fc3-49ae-a36c-2accaefb2086" maxEntries="5" entryTtl="30" entryTtlUnit="MINUTES" />
+	<flow name="objectstoreFlow" doc:id="3b42cda4-fb6b-4130-ad80-72d26d213638" >
+		<http:listener doc:name="Listener" doc:id="365fa156-982c-41d3-a5d5-60901f448969" config-ref="HTTP_Listener_config" path="/objectsore"/>
+		<logger level="INFO" doc:name="Logger" doc:id="5a8ffa40-907c-410e-b71a-311b6f6e4074" message="Object Store start logger"/>
+		<os:store doc:name="Store" doc:id="468611ae-01e9-464e-ba2b-e25fc764bfd3" key="#[payload.key]" objectStore="Object_store">
+			<os:value ><![CDATA[#[payload.value]]]></os:value>
+		</os:store>
+		<logger level="INFO" doc:name="Logger" doc:id="462a3795-88bf-4f2f-b1c4-1f92493428a8" message="Object Store end logger"/>
+	</flow>
+</mule>
