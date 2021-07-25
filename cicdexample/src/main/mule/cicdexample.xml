@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<flow name="cicdexampleFlow" doc:id="11bd7554-3b60-4a4d-aaa2-d5493231ea8a" >
 		<http:listener doc:name="Listener" doc:id="de7c5af1-e6e1-4f90-b664-9f2b5636961c" config-ref="HTTP_Listener_config" path="/cicd"/>
 		<set-payload value="first sample payload" doc:name="Set Payload" doc:id="ace962e3-3101-45ea-a944-e59a5aed834e" />
-		<logger level="INFO" doc:name="Logger" doc:id="0e40b916-4b1a-4a89-8327-a5061c421056" message="cicd sample project"/>
+		<logger level="INFO" doc:name="Logger" doc:id="0e40b916-4b1a-4a89-8327-a5061c421056" message="cicd example logger"/>
 		<set-payload value="cicd sample payload" doc:name="Set Payload" doc:id="ce3a5867-76c5-45b6-b4d5-7df09e79edef" />
 	</flow>
 </mule>
