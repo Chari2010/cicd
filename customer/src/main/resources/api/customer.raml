@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: customer
+/customer:
+  get:
+    queryParameters:
+      name?: string
+      role?: string
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+                {"id": 1, "name": "Chari"},
+                {"id": 2, "name": "Sarath"}
+              ]
+              
